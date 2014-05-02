@@ -33,8 +33,12 @@ public class Mappity : MonoBehaviour {
 	public Texture targetTex;
 	public Texture overTex;
 	
+	public int selectedTargetIndex = -1;
+	
 	//testing
 	public GameObject calibObject;
+	
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -53,13 +57,14 @@ public class Mappity : MonoBehaviour {
 		intrinsics = new IntrinsicCameraParameters (); 
 
 		//Settings based on Mapamok default settings
-		calibrationType = CALIB_TYPE.CV_CALIB_USE_INTRINSIC_GUESS |
-				//CALIB_TYPE.CV_CALIB_FIX_PRINCIPAL_POINT) | //not enabled by default in Mapamok
-				CALIB_TYPE.CV_CALIB_FIX_ASPECT_RATIO |
-				CALIB_TYPE.CV_CALIB_FIX_K1|
-				CALIB_TYPE.CV_CALIB_FIX_K2 |
-				CALIB_TYPE.CV_CALIB_FIX_K3 |
-				CALIB_TYPE.CV_CALIB_ZERO_TANGENT_DIST;
+		calibrationType = CALIB_TYPE.CV_CALIB_USE_INTRINSIC_GUESS 
+				| CALIB_TYPE.CV_CALIB_FIX_PRINCIPAL_POINT //required to work properly !!
+				| CALIB_TYPE.CV_CALIB_FIX_ASPECT_RATIO 
+				| CALIB_TYPE.CV_CALIB_FIX_K1
+				| CALIB_TYPE.CV_CALIB_FIX_K2
+				| CALIB_TYPE.CV_CALIB_FIX_K3
+				| CALIB_TYPE.CV_CALIB_ZERO_TANGENT_DIST
+				;
 
 		termCriteria = new MCvTermCriteria();
 		
@@ -81,16 +86,39 @@ public class Mappity : MonoBehaviour {
 			imagePoints[0][i] = new PointF(sp.x,sp.y);
 		}
 	}
+	
+	
+	void updateImagePoints()
+	{
+		for (int i=0; i<numPoints; i++) {
+			
+			imagePoints[0][i] = new PointF(unityImagePoints[0][i].x,unityImagePoints[0][i].y);
+		}
+	}
 
 	// Update is called once per frame
 	void Update () {
-		setPointsFromObject (calibObject);
-
+		
+		
 		if (autoCalibrate) {
 			calibrate ();
 		}
 		
 		if(Input.GetKeyDown(KeyCode.A)) autoCalibrate = !autoCalibrate;
+		
+		if(Input.GetMouseButtonDown(0))
+		{
+			selectedTargetIndex = getClosestTargetIndex();
+		}else if(Input.GetMouseButtonUp(0))
+		{
+			selectedTargetIndex = -1;
+		}
+		
+		if(selectedTargetIndex != -1)
+		{
+			unityImagePoints[0][selectedTargetIndex] = Input.mousePosition;
+			updateImagePoints();
+		}
 	}
 	
 	public void calibrate()
@@ -110,29 +138,56 @@ public class Mappity : MonoBehaviour {
 		for (int i=0; i<numPoints; i++) {
 			Vector2 p = unityImagePoints[0][i];
 			p.y = Screen.height - p.y;
-			GUI.DrawTexture(new Rect(p.x-targetTex.width/2,p.y-targetTex.height/2,targetTex.width,targetTex.height),targetTex);
+			Texture tex = (i==selectedTargetIndex)?overTex:targetTex;
+			GUI.DrawTexture(new Rect(p.x-targetTex.width/2,p.y-targetTex.height/2,targetTex.width,targetTex.height),tex);
 		}
 		
-		GUI.TextField(new Rect(10,10,300,150),camera.projectionMatrix.ToString());
-		GUI.TextField(new Rect(10,160,300,150),cvIntrinsics.ToString());
+		//GUI.TextField(new Rect(10,10,300,150),camera.worldToCameraMatrix.ToString());
+		GUI.TextField(new Rect(10,160,300,150),cvExtrinsics.ToString());
 	}
 	
 	public void updateCameraParams()
 	{
-		Vector3 zero = new Vector3(cvExtrinsics[3,0],-cvExtrinsics[3,1],cvExtrinsics[3,2]);
-		Quaternion q = Quaternion.LookRotation(cvExtrinsics.GetColumn(2), cvExtrinsics.GetColumn(1));
-		
+	
+		//Vector3 zero = new Vector3(cvExtrinsics[3,0],-cvExtrinsics[3,1],cvExtrinsics[3,2]);
+		//Quaternion q = Quaternion.LookRotation(cvExtrinsics.GetColumn(2), cvExtrinsics.GetColumn(1));
+		//Quaternion.Inverse(q);
 		//To convert to camera position when all is clean
 		
-		//testZero.transform.position = Vector3.zero;
-		//testZero.transform.rotation = q;
-		//Vector3 newT = testZero.transform.TransformPoint(zero);
-		//testZero.transform.position = newT;
+		//camera.transform.position = Vector3.zero;
+		//camera.transform.rotation = q;
+		//Vector3 newT = camera.transform.TransformPoint(zero);
+		//camera.transform.position = newT;
+		//camera.transform.Rotate (Vector3.up,180);
 		
-		//camera.projectionMatrix = cvIntrinsics;
+		//camera.transform.position =extrinsics[0].TranslationVector
+		camera.projectionMatrix = cvIntrinsics;
+		camera.worldToCameraMatrix = cvExtrinsics;
 	}
 
 	//Utils
+	
+	//UI Util
+	int getClosestTargetIndex()
+	{
+		float dist = Screen.width;
+		int index = -1;
+		
+		for(int i=0;i<numPoints;i++)
+		{
+			float newDist = Vector2.Distance(Input.mousePosition,unityImagePoints[0][i]);
+			if(newDist < dist)
+			{
+				dist = newDist;
+				index = i;
+			}
+		}
+		
+		return index;
+	} 
+	
+	
+	//CV Util
 	void setIntrinsics()
 	{
 		double aov = camera.fieldOfView;
@@ -170,12 +225,13 @@ public class Mappity : MonoBehaviour {
 	{
 		Matrix4x4 m = CVMatToMat4x4(mat);
 		
-		m = m.transpose;
+		//m = m.transpose;
 		
 		//Invert some signs to conform to unity matrix
-		m[0,2] = -m[0,2];
-		m[1,2] = -m[1,2];
+		m[2,0] = -m[2,0];
+		m[2,1] = -m[2,1];
 		m[2,2] = -m[2,2];
+		m[2,3] = -m[2,3];
 	
 		m[3,3] = 1;
 		

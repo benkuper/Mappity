@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Mappity\Mappity.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Test.cs">
     <Files>
+      <File FileName="Assets\Test.cs" Line="10" Column="1" />
       <File FileName="Assets\Mappity\Mappity.cs" Line="104" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>

@@ -7,12 +7,7 @@ public class Test : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		const int size = 200;
-		IntPtr memorySource = Marshal.AllocHGlobal(size);
-		IntPtr memoryTarget = Marshal.AllocHGlobal(size);
-		
-		
-		CopyMemory(memoryTarget,memorySource, size);
+
 	}
 	
 	// Update is called once per frame
@@ -20,6 +15,7 @@ public class Test : MonoBehaviour {
 	
 	}
 
-	[DllImport("msvcrt.dll", EntryPoint = "memcpy", SetLastError = false)]
-	public static extern void CopyMemory(IntPtr dest, IntPtr src, uint count);
+	public void testFunction()
+	{
+	}
 }
