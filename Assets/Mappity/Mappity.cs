@@ -9,8 +9,9 @@ using System.Drawing;
 [RequireComponent(typeof(Camera))]
 public class Mappity : MonoBehaviour {
 
+	//CV variables
 	public int numPoints = 6;
-
+	
 	Vector3[][] unityObjectPoints;
 	Vector2[][] unityImagePoints;
 
@@ -22,12 +23,17 @@ public class Mappity : MonoBehaviour {
 	CALIB_TYPE calibrationType;
 	MCvTermCriteria termCriteria;
 	ExtrinsicCameraParameters[] extrinsics;
-
-	public bool autoCalibrate;
 	
-	//temp
+	Texture errorTex;
+	public double calibrationError;
+	
+	//CV <> Unity conversion
 	Matrix4x4 cvExtrinsics;
 	Matrix4x4 cvIntrinsics;
+	
+	
+	//control
+	public bool autoCalibrate;
 	
 	//ui
 	public Texture targetTex;
@@ -35,9 +41,9 @@ public class Mappity : MonoBehaviour {
 	
 	public int selectedTargetIndex = -1;
 	
+	
 	//testing
 	public GameObject calibObject;
-	
 	
 	
 	// Use this for initialization
@@ -124,7 +130,7 @@ public class Mappity : MonoBehaviour {
 	public void calibrate()
 	{
 		setIntrinsics ();
-		CameraCalibration.CalibrateCamera (objectPoints, imagePoints, imageSize, intrinsics, calibrationType, termCriteria, out extrinsics);
+		calibrationError = CameraCalibration.CalibrateCamera (objectPoints, imagePoints, imageSize, intrinsics, calibrationType, termCriteria, out extrinsics);
 		
 		cvExtrinsics = convertExtrinsics(extrinsics[0].ExtrinsicMatrix);
 		cvIntrinsics = convertIntrinsics(intrinsics.IntrinsicMatrix);
@@ -143,7 +149,9 @@ public class Mappity : MonoBehaviour {
 		}
 		
 		//GUI.TextField(new Rect(10,10,300,150),camera.worldToCameraMatrix.ToString());
-		GUI.TextField(new Rect(10,160,300,150),cvExtrinsics.ToString());
+		//GUI.TextField(new Rect(10,160,300,150),cvExtrinsics.ToString());
+		
+		GUI.Label(new Rect(10,10,200,50),"Error :"+calibrationError);
 	}
 	
 	public void updateCameraParams()
