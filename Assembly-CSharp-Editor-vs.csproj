@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{ADB6C727-81A0-72DA-1396-FAFE4506D2D7}</ProjectGuid>
+	<ProjectGuid>{606D95D9-A7FD-89E5-995A-54611B671082}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,18 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Mappity\Drawing.cs" />
-     <Compile Include="Assets\Mappity\LigtTracker.cs" />
-     <Compile Include="Assets\Mappity\Mappity.cs" />
-     <Compile Include="Assets\OSC\OSCBundle.cs" />
-     <Compile Include="Assets\OSC\OSCClient.cs" />
-     <Compile Include="Assets\OSC\OSCMessage.cs" />
-     <Compile Include="Assets\OSC\OSCPacket.cs" />
-     <Compile Include="Assets\OSC\OSCServer.cs" />
-     <Compile Include="Assets\OSCHandler.cs" />
-     <Compile Include="Assets\Test.cs" />
+     <Compile Include="Assets\Editor\OSCHelper.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Emgu.CV">
  <HintPath>D:/Documents/Perso/Research/UnityResearch/Mappity/Assets/Plugins/Emgu.CV.dll</HintPath>
@@ -68,6 +62,13 @@
  <Reference Include="System.Drawing">
  <HintPath>D:/Documents/Perso/Research/UnityResearch/Mappity/Assets/Plugins/System.Drawing.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-vs.csproj">
+      <Project>{ADB6C727-81A0-72DA-1396-FAFE4506D2D7}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{ADB6C727-81A0-72DA-1396-FAFE4506D2D7}</ProjectGuid>
+	<ProjectGuid>{9DFC373D-1A85-9A77-6129-AFDAA6D6635C}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,16 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Mappity\Drawing.cs" />
-     <Compile Include="Assets\Mappity\LigtTracker.cs" />
-     <Compile Include="Assets\Mappity\Mappity.cs" />
-     <Compile Include="Assets\OSC\OSCBundle.cs" />
-     <Compile Include="Assets\OSC\OSCClient.cs" />
-     <Compile Include="Assets\OSC\OSCMessage.cs" />
-     <Compile Include="Assets\OSC\OSCPacket.cs" />
-     <Compile Include="Assets\OSC\OSCServer.cs" />
-     <Compile Include="Assets\OSCHandler.cs" />
-     <Compile Include="Assets\Test.cs" />
+     <Compile Include="Assets\LightTracker.js" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

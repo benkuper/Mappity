@@ -45,7 +45,6 @@ public class Mappity : MonoBehaviour {
 	//testing
 	public GameObject calibObject;
 	
-	
 	// Use this for initialization
 	void Start () {
 
@@ -65,10 +64,12 @@ public class Mappity : MonoBehaviour {
 		//Settings based on Mapamok default settings
 		calibrationType = CALIB_TYPE.CV_CALIB_USE_INTRINSIC_GUESS 
 				| CALIB_TYPE.CV_CALIB_FIX_PRINCIPAL_POINT //required to work properly !!
-				| CALIB_TYPE.CV_CALIB_FIX_ASPECT_RATIO 
+				| CALIB_TYPE.CV_CALIB_FIX_ASPECT_RATIO  
 				| CALIB_TYPE.CV_CALIB_FIX_K1
 				| CALIB_TYPE.CV_CALIB_FIX_K2
 				| CALIB_TYPE.CV_CALIB_FIX_K3
+				| CALIB_TYPE.CV_CALIB_FIX_K4
+				| CALIB_TYPE.CV_CALIB_FIX_K5
 				| CALIB_TYPE.CV_CALIB_ZERO_TANGENT_DIST
 				;
 
@@ -85,10 +86,12 @@ public class Mappity : MonoBehaviour {
 		for (int i=0; i<numPoints; i++) {
 			Vector3 op = calibObject.transform.TransformPoint(m.vertices[i]);
 			unityObjectPoints[0][i] = op;
+			
+			objectPoints[0][i] = new MCvPoint3D32f(op.x,op.y,op.z);
+			
 			Vector2 sp = camera.WorldToScreenPoint(op);
 			unityImagePoints[0][i] = sp;
-
-			objectPoints[0][i] = new MCvPoint3D32f(op.x,op.y,op.z);
+			
 			imagePoints[0][i] = new PointF(sp.x,sp.y);
 		}
 	}
@@ -146,6 +149,7 @@ public class Mappity : MonoBehaviour {
 			p.y = Screen.height - p.y;
 			Texture tex = (i==selectedTargetIndex)?overTex:targetTex;
 			GUI.DrawTexture(new Rect(p.x-targetTex.width/2,p.y-targetTex.height/2,targetTex.width,targetTex.height),tex);
+			GUI.Label(new Rect(p.x-targetTex.width/2,p.y-targetTex.height/2-20,50,50),i.ToString());
 		}
 		
 		//GUI.TextField(new Rect(10,10,300,150),camera.worldToCameraMatrix.ToString());
@@ -195,13 +199,34 @@ public class Mappity : MonoBehaviour {
 	} 
 	
 	
+	
 	//CV Util
+
+	public void setImagePoints (Vector2[] points, int[] correspondance)
+	{
+		if(points.Length != numPoints)
+		{
+			Debug.LogError("Different number of points !");
+			return;
+		}
+		
+		Debug.Log ("set Image points !");
+		
+		for(int i=0;i<numPoints;i++)
+		{
+			Vector2 sp = points[i];
+			unityImagePoints[0][correspondance[i]] = new Vector2(sp.x,Screen.height-sp.y);
+			imagePoints[0][correspondance[i]] = new PointF(sp.x,sp.y);
+		}
+	}	
+	
+	
 	void setIntrinsics()
 	{
 		double aov = camera.fieldOfView;
 		double f = imageSize.Width * Mathf.Deg2Rad * aov; // i think this is wrong, but it's optimized out anyway
 		Vector2 c =  new Vector2(imageSize.Width/2,imageSize.Height/2);
-
+ 
 		intrinsics.IntrinsicMatrix[0,0] = f;
 		intrinsics.IntrinsicMatrix[0,1] = 0;
 		intrinsics.IntrinsicMatrix[0,2] = c.x;

@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Mappity\Mappity.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Projects\Myo\Unity\Assets\Myo Samples\Scripts\JointOrientation.cs">
     <Files>
-      <File FileName="Assets\Mappity\Mappity.cs" Line="28" Column="15" />
-      <File FileName="Assets\Mappity\Mappity.cs" Line="261" Column="1" />
+      <File FileName="..\..\..\Projects\Myo\Unity\Assets\Myo Samples\Scripts\JointOrientation.cs" Line="6" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
