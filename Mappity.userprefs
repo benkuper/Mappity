@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Projects\Myo\Unity\Assets\Myo Samples\Scripts\JointOrientation.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Test.cs">
     <Files>
-      <File FileName="..\..\..\Projects\Myo\Unity\Assets\Myo Samples\Scripts\JointOrientation.cs" Line="6" Column="53" />
+      <File FileName="Assets\Test.cs" Line="10" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

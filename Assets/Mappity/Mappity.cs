@@ -89,7 +89,7 @@ public class Mappity : MonoBehaviour {
 			
 			objectPoints[0][i] = new MCvPoint3D32f(op.x,op.y,op.z);
 			
-			Vector2 sp = camera.WorldToScreenPoint(op);
+			Vector2 sp = GetComponent<Camera>().WorldToScreenPoint(op);
 			unityImagePoints[0][i] = sp;
 			
 			imagePoints[0][i] = new PointF(sp.x,sp.y);
@@ -173,8 +173,8 @@ public class Mappity : MonoBehaviour {
 		//camera.transform.Rotate (Vector3.up,180);
 		
 		//camera.transform.position =extrinsics[0].TranslationVector
-		camera.projectionMatrix = cvIntrinsics;
-		camera.worldToCameraMatrix = cvExtrinsics;
+		GetComponent<Camera>().projectionMatrix = cvIntrinsics;
+		GetComponent<Camera>().worldToCameraMatrix = cvExtrinsics;
 	}
 
 	//Utils
@@ -223,7 +223,7 @@ public class Mappity : MonoBehaviour {
 	
 	void setIntrinsics()
 	{
-		double aov = camera.fieldOfView;
+		double aov = GetComponent<Camera>().fieldOfView;
 		double f = imageSize.Width * Mathf.Deg2Rad * aov; // i think this is wrong, but it's optimized out anyway
 		Vector2 c =  new Vector2(imageSize.Width/2,imageSize.Height/2);
  
@@ -241,8 +241,8 @@ public class Mappity : MonoBehaviour {
 	public Matrix4x4 convertIntrinsics(Matrix<double> mat)
 	{
 		Matrix4x4 cm = CVMatToMat4x4(mat);
-		float far = camera.farClipPlane;
-		float near =camera.nearClipPlane;
+		float far = GetComponent<Camera>().farClipPlane;
+		float near =GetComponent<Camera>().nearClipPlane;
 		
 		Matrix4x4 m = new Matrix4x4();
 		m[0,0] = cm[0,0] / cm[0,2];

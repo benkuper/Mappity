@@ -59,7 +59,7 @@ public class LigtTracker : MonoBehaviour {
 				{
 					finished = true;
 					if(updateMappity) mappity.setImagePoints(lightPos,correspondance);
-					camera.enabled = false;
+					GetComponent<Camera>().enabled = false;
 				}
 				
 			}
@@ -104,7 +104,7 @@ public class LigtTracker : MonoBehaviour {
 			lightDetectionCount[i] = Vector2.zero;
 		}
 		
-		camera.enabled = true;
+		GetComponent<Camera>().enabled = true;
 		finished = false;
 		timeOffset = Time.time;
 	}
