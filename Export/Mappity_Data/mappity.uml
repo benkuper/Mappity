@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SaveData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <fileName>SavedData</fileName>
+  <serializedTypes>
+    <string>UnityEngine.Vector3, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</string>
+    <string>UnityEngine.Vector2, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</string>
+  </serializedTypes>
+  <serializedData>
+    <DataContainer>
+      <key>numProjectors</key>
+      <value xsi:type="xsd:int">1</value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_numPoints</key>
+      <value xsi:type="xsd:int">6</value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_spacePoint0</key>
+      <value xsi:type="Vector3">
+        <x>-0.5</x>
+        <y>1</y>
+        <z>0.5</z>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_imagePoint0</key>
+      <value xsi:type="Vector2">
+        <x>523.3962</x>
+        <y>427.091522</y>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_spacePoint1</key>
+      <value xsi:type="Vector3">
+        <x>-0.5</x>
+        <y>1</y>
+        <z>-0.5</z>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_imagePoint1</key>
+      <value xsi:type="Vector2">
+        <x>652.5429</x>
+        <y>534.927246</y>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_spacePoint2</key>
+      <value xsi:type="Vector3">
+        <x>0.5</x>
+        <y>1</y>
+        <z>-0.5</z>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_imagePoint2</key>
+      <value xsi:type="Vector2">
+        <x>771.213257</x>
+        <y>464.5234</y>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_spacePoint3</key>
+      <value xsi:type="Vector3">
+        <x>-0.5</x>
+        <y>0</y>
+        <z>-0.5</z>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_imagePoint3</key>
+      <value xsi:type="Vector2">
+        <x>665.6883</x>
+        <y>179.339981</y>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_spacePoint4</key>
+      <value xsi:type="Vector3">
+        <x>0.5</x>
+        <y>0</y>
+        <z>-0.5</z>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_imagePoint4</key>
+      <value xsi:type="Vector2">
+        <x>791.5422</x>
+        <y>290.816284</y>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_spacePoint5</key>
+      <value xsi:type="Vector3">
+        <x>-0.5</x>
+        <y>0</y>
+        <z>0.5</z>
+      </value>
+    </DataContainer>
+    <DataContainer>
+      <key>proj0_imagePoint5</key>
+      <value xsi:type="Vector2">
+        <x>484.432678</x>
+        <y>264.212555</y>
+      </value>
+    </DataContainer>
+  </serializedData>
+</SaveData>
