@@ -32,8 +32,8 @@ public class Mappity : MonoBehaviour {
 
     bool _editMode;
 
+    const int maxProj = 10; //Defined in SpoutSDK (SpoutSenderNames.h MaxSenders=10), must recompile if we want more
 
-   
 
     int curProjID;
 
@@ -64,6 +64,7 @@ public class Mappity : MonoBehaviour {
 
     public void addProjector()
     {
+        if (projs.Count >= maxProj-1) return;
         MappityProj proj = Instantiate(projPrefab).GetComponent<MappityProj>();
         projs.Add(proj);
        

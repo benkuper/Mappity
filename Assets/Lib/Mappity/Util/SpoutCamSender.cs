@@ -18,7 +18,9 @@ namespace Spout{
         //tested with DXGI_FORMAT_R8G8B8A8_UNORM (ATI Card)
         public enum TextureFormat { DXGI_FORMAT_R32G32B32A32_FLOAT = 2, DXGI_FORMAT_R10G10B10A2_UNORM = 24, DXGI_FORMAT_R8G8B8A8_UNORM = 28, DXGI_FORMAT_B8G8R8A8_UNORM=87 }
 		public string sharingName = "UnitySender";
-		public RenderTexture texture;
+		RenderTexture texture;
+        RenderTexture blackTex; //For forcing black on disable
+
         public TextureFormat textureFormat = TextureFormat.DXGI_FORMAT_R8G8B8A8_UNORM;
 		public bool debugConsole = false;
 		
@@ -30,6 +32,7 @@ namespace Spout{
         public int textureHeight = 1080;
 
         public bool showTexture;
+        public bool forceBlackTexture;
 
 		//make this public if you want
 		//It's better you set this always to true!
@@ -62,6 +65,11 @@ namespace Spout{
                 texture.depth = 24;
                 texture.Create();
                 _cam.targetTexture = texture;
+
+                blackTex = new RenderTexture(textureWidth, textureHeight, 0, RenderTextureFormat.ARGB32);
+                blackTex.antiAliasing = 1;
+                blackTex.depth = 24;
+                blackTex.Create();
             }
 		}
 		
@@ -103,7 +111,6 @@ namespace Spout{
 			#if UNITY_EDITOR
 			UnityEditor.EditorApplication.update -= _Update;
 			#endif
-
 			_CloseSender();
 		}
 
@@ -131,7 +138,7 @@ namespace Spout{
 
 			if(senderIsCreated)
 			{
-				Spout.instance.UpdateSender(sharingName,texture);
+				Spout.instance.UpdateSender(sharingName,forceBlackTexture?blackTex:texture);
 				//Debug.Log("Update sender :"+updateSenderResult);
 			}
 			else
@@ -212,8 +219,8 @@ namespace Spout{
 		}
 		
 		private void _CloseSender(){
-			//Debug.Log("SpoutSender._CloseSender:"+sharingName);
-			if(senderIsCreated) Spout.CloseSender(sharingName);
+            //Debug.Log("SpoutSender._CloseSender:"+sharingName);
+            if (senderIsCreated) Spout.CloseSender(sharingName);
 			_CloseSenderCleanUpData();
 		}
 		
@@ -229,6 +236,7 @@ namespace Spout{
 		}
 
 		private void _CloseSenderCleanUpData(){
+            
 			senderIsCreated = false;
 		}
 

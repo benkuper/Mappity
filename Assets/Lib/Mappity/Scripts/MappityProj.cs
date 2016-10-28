@@ -97,7 +97,7 @@ public class MappityProj : MonoBehaviour
         if (this.id == id) return;
         this.id = id;
 
-        GetComponent<SpoutCamSender>().sharingName = "MappityCam" + this.id;
+        GetComponent<SpoutCamSender>().sharingName = "M" + this.id;
         GetComponent<SpoutCamSender>().enabled = false;
         GetComponent<SpoutCamSender>().enabled = true; //force recreation of spoutTex with new name
     }
@@ -110,7 +110,7 @@ public class MappityProj : MonoBehaviour
 
     public void setDisplay(bool value)
     {
-        GetComponent<SpoutCamSender>().enabled = value;
+        GetComponent<SpoutCamSender>().forceBlackTexture = !value;
     }
     
 }
