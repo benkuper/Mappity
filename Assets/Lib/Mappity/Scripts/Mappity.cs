@@ -40,7 +40,7 @@ public class Mappity : MonoBehaviour {
     void Start () {
         projs = new List<MappityProj>();
         projToggles = new List<MappityProjToggle>();
-        projectorContainer = transform.FindChild("Projectors");
+        projectorContainer = transform.Find("Projectors");
         projectorListContainer = projToggleGroup.transform;
         projPanel = GetComponentInChildren<MappityProjPanel>();
 

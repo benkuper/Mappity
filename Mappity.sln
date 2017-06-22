@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mappity.CSharp", "Mappity.CSharp.csproj", "{84795DBB-935A-D6F9-2894-0B1E0F06C9CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mappity", "Mappity.csproj", "{E209CE93-48E2-23E6-D94F-0702AE857583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84795DBB-935A-D6F9-2894-0B1E0F06C9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84795DBB-935A-D6F9-2894-0B1E0F06C9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84795DBB-935A-D6F9-2894-0B1E0F06C9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84795DBB-935A-D6F9-2894-0B1E0F06C9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E209CE93-48E2-23E6-D94F-0702AE857583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E209CE93-48E2-23E6-D94F-0702AE857583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E209CE93-48E2-23E6-D94F-0702AE857583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E209CE93-48E2-23E6-D94F-0702AE857583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

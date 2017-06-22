@@ -33,21 +33,21 @@ public class MappityProjPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        title = transform.FindChild("ProjTitle").GetComponent<Text>();
-        controlContainer = transform.FindChild("Controls").GetComponent<Transform>();
+        title = transform.Find("ProjTitle").GetComponent<Text>();
+        controlContainer = transform.Find("Controls").GetComponent<Transform>();
 
-        wireToggle = controlContainer.FindChild("WireToggle").GetComponent<Toggle>();
+        wireToggle = controlContainer.Find("WireToggle").GetComponent<Toggle>();
 
-        edit2D = controlContainer.FindChild("Edit2DPointsToggle").GetComponent<Toggle>();
-        crosshair = controlContainer.FindChild("CrossHairToggle").GetComponent<Toggle>();
-        arrow = controlContainer.FindChild("ArrowToggle").GetComponent<Toggle>();
+        edit2D = controlContainer.Find("Edit2DPointsToggle").GetComponent<Toggle>();
+        crosshair = controlContainer.Find("CrossHairToggle").GetComponent<Toggle>();
+        arrow = controlContainer.Find("ArrowToggle").GetComponent<Toggle>();
 
-        arrowSlider = controlContainer.FindChild("ArrowSlider").GetComponent<Slider>();
-        lineSlider = controlContainer.FindChild("LineSlider").GetComponent<Slider>();
-        targetSlider = controlContainer.FindChild("TargetSlider").GetComponent<Slider>();
+        arrowSlider = controlContainer.Find("ArrowSlider").GetComponent<Slider>();
+        lineSlider = controlContainer.Find("LineSlider").GetComponent<Slider>();
+        targetSlider = controlContainer.Find("TargetSlider").GetComponent<Slider>();
 
-        errorText = controlContainer.FindChild("ErrorFeedback/Error").GetComponent<Text>();
-        errorImg = controlContainer.FindChild("ErrorFeedback/ErrorBG/ErrorImg").GetComponent<Image>();
+        errorText = controlContainer.Find("ErrorFeedback/Error").GetComponent<Text>();
+        errorImg = controlContainer.Find("ErrorFeedback/ErrorBG/ErrorImg").GetComponent<Image>();
 
         updateUI();
 	}
